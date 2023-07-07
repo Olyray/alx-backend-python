@@ -1,0 +1,1 @@
+Files in this directory are solutions for the tasks in the python variable annotations module.
