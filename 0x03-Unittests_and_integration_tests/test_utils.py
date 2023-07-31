@@ -20,10 +20,23 @@ class TestAccessNestedMap(unittest.TestCase):
         nested_map: Mapping,
         path: Sequence,
         result: Union[Dict, int]
-        ) -> None:
+            ) -> None:
         """This method runs a test for access_nested_map"""
         returned_element = access_nested_map(nested_map, path)
         self.assertEqual(result, returned_element)
+
+    @parameterized.expand([
+        ({}, ("a",)),
+        ({"a": 1}, ("a", "b"))
+    ])
+    def test_access_nested_map_exception(
+        self,
+        nested_map: Mapping,
+        path: Sequence
+    ) -> None:
+        """Tests that a key error is returned"""
+        with self.assertRaises(KeyError):
+            access_nested_map(nested_map, path)
 
 
 if __name__ == "__main__":
